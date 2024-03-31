@@ -11,7 +11,7 @@ import cv2
 import torch
 import numpy as np
 from PIL import Image
-import mediapipe as mp
+
 
 import folder_paths
 
@@ -62,7 +62,8 @@ class APersonMaskGenerator:
 
     FUNCTION = "generate_mask"
 
-    def get_mediapipe_image(self, image: Image) -> mp.Image:
+    def get_mediapipe_image(self, image: Image):
+        import mediapipe as mp
         # Convert image to NumPy array
         numpy_image = np.asarray(image)
 
@@ -78,7 +79,7 @@ class APersonMaskGenerator:
         return mp.Image(image_format=image_format, data=numpy_image)
 
     def generate_mask(self, images, face_mask: bool, background_mask: bool, hair_mask: bool, body_mask: bool, clothes_mask: bool, confidence: float):
-
+        import mediapipe as mp
         """Create a segmentation mask from an image
 
         Args:
